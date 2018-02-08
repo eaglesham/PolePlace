@@ -48,6 +48,11 @@ app.get("/create", (req, res) => {
   res.render("create");
 });
 
+// Poll:id page
+app.get("/poll/:id", (req, res) => {
+  res.render("poll");
+});
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
