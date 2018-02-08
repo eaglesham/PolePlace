@@ -38,6 +38,16 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
+function generateRandomString() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for(var i = 0; i < 6; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+}
+
+
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
@@ -57,6 +67,14 @@ app.get("/poll/:id", (req, res) => {
 app.get("/admin/:id", (req, res) => {
   res.render("admin");
 });
+
+app.post("/create", (req, res) => {
+    let randomPollID = generateRandomString();
+    let randomAdminID = generateRandomString();
+    let adminEmail = //email submitted from form 
+    //add 
+}
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
