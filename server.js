@@ -71,9 +71,9 @@ app.get("/admin/:id", (req, res) => {
 app.post("/create", (req, res) => {
     let randomPollID = generateRandomString();
     let randomAdminID = generateRandomString();
-    let adminEmail = //email submitted from form 
-    //add 
-}
+    let adminEmail = ''; //email submitted from form
+    //add
+});
 
 
 app.listen(PORT, () => {

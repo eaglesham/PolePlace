@@ -8,19 +8,41 @@
   <body>
     <h1>Question?</h1>
     <h2>description</h2>
-    <div class ="listContainer">
+    <div class ="row justify-content-center">
       <form id="sendPoll" action="/poll/:id" method="post">
-      <ul>
-        <li>This</li>
-        <li>is</li>
-        <li>a</li>
-        <li>sample</li>
-        <li>list</li>
-      </ul>
-      Name: <input name="pollerName" type="text"><p><p>
-      <input type="submit" value="Submit">
-    </div>
+    <div class="pollList">
 
+    </div>
+        <ul class="list-group">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul><p><p>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Whose opinion is this?</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Enter your name" aria-label="Name" aria-describedby="basic-addon1">
+      </div>
+
+      <p><p>
+
+
+        <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Submit
+        </button>
+      </p>
+      <div class ="row justify-content-center">
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+              <h3>Results</h3>
+            <span class="results">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</span>
+            <span class="resultLinks"></span>
+        </div>
+      </div>
+    </div>
 
 
     <% include ./partials/_bootstrap %>
