@@ -53,6 +53,11 @@ app.get("/poll/:id", (req, res) => {
   res.render("poll");
 });
 
+// Admin page
+app.get("/admin/:id", (req, res) => {
+  res.render("admin");
+});
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
