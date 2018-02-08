@@ -59,21 +59,21 @@ app.get("/create", (req, res) => {
 });
 
 // Poll:id page
-app.get("/poll/:id", (req, res) => {
+app.get("/polls/:id", (req, res) => {
   res.render("poll");
 });
 
 // Admin page
-app.get("/admin/:id", (req, res) => {
+app.get("/admins/:id", (req, res) => {
   res.render("admin");
 });
 
-app.post("/create", (req, res) => {
+app.post("/polls", (req, res) => {
     let randomPollID = generateRandomString();
     let randomAdminID = generateRandomString();
-    let adminEmail = //email submitted from form 
+    let adminEmail = ""//email submitted from form 
     //add 
-}
+})
 
 
 app.listen(PORT, () => {
