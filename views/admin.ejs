@@ -6,15 +6,22 @@
   </head>
 
   <body>
-    <h1>Stats</h1>
-      <span class="stats">
-        <% for (let obj of votes) { %>
-          <% for (let item in obj) { %>
-          <ul class="list-group">
-           <li class="list-group-item"><%= obj[item] %></li>
-          <% } %>
+     <% for (let obj of votes) { %>
+          <h1>Results for <i>"<%= obj.polldescription %>"</i> </h1>
         <% } %>
-      </ul>
+      <span class="stats">
+        <h2>Stats:</h2>
+        <p>
+        <% for (let obj of votes) { %>
+          <li>"<%= obj.title %>" (<%= obj.description %>) received <%= obj.points %> points.</li>
+        <% } %>
+        <p>
+          <h3>Voter stats:</h3><p>
+        <% for (let obj of votes) { %>
+          <li><%= obj.name %>'s top vote was "<%= obj.title %>" (<%= obj.description %>).</li>
+        <% } %>
+
+
         <!--   [ anonymous {
               title: 'title B',
               description: 'description B',
