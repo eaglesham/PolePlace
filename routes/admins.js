@@ -10,7 +10,7 @@ module.exports = (knex) => {
 
     knex('poll')
       .join('options', 'poll.id', '=', 'options.pollid')
-      .where('creatorid', '=', adminID)
+      .where('adminurl', '=', adminID)
       .join('votes', 'options.id', '=', 'votes.optionid')
       .join('voters', 'votes.optionid', '=', 'voters.id')
       .select('polldescription', 'title', 'description', 'adminurl', 'points', 'name')
