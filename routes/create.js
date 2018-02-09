@@ -10,7 +10,6 @@ module.exports = (knex) => {
     res.render("create");
   });
 
-  router.post("/")
-
   return router;
+
 }

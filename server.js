@@ -1,5 +1,3 @@
-import { create } from 'domain';
-
 "use strict";
 
 require('dotenv').config();
@@ -19,6 +17,7 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const adminRoutes = require("./routes/admins");
 const createRoutes = require("./routes/create");
+const pollRoutes = require("./routes/poll");
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -40,6 +39,7 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/admins", adminRoutes(knex));
 app.use("/create", createRoutes(knex));
+app.use("/poll", pollRoutes(knex));
 
 function generateRandomString() {
   var text = "";
@@ -54,20 +54,6 @@ function generateRandomString() {
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
-});
-
-
-// Poll:id page
-app.get("/polls/:id", (req, res) => {
-  res.render("poll");
-});
-
-
-app.post("/polls", (req, res) => {
-    let randomPollID = generateRandomString();
-    let randomAdminID = generateRandomString();
-    let adminEmail = ''; //email submitted from form 
-    //add 
 });
 
 
