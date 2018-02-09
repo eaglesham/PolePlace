@@ -27,20 +27,17 @@ module.exports = (knex) => {
       return;
     }
     
-    let randomPollID = generateRandomString();
-    let randomAdminID = generateRandomString();
+    
     let adminEmail = ''; //email submitted from form 
     //add 
     knex('creator')
     .insert({}).returning('id')
     .then(function(creatorid) {
-        console.log(creatorid);
-        return knex('poll')
-      .insert({creatorid: creatorid[0], polldescription: req.body.pollQuestion, submissionurl: '/polls/randomPollID', adminurl: '/polls/randomAdminID'}).returning('id')
+      let randomPollID = generateRandomString();
+      let randomAdminID = generateRandomString();
+      return knex('poll')
+      .insert({creatorid: creatorid[0], polldescription: req.body.pollQuestion, submissionurl: `/polls/${randomPollID}`, adminurl: `/polls/${randomAdminID}`}).returning('id')
       .then(function(pollid) {
-          console.log('IN PROMISE ALL', req.body.opt1, req.body.opt2)
-          let title1 = req.body.opt1;
-          let title2 = req.body.opt2;
           let options = Object.values(req.body);
           let promises = [];
           for (let option of options) {
