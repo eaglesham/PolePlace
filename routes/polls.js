@@ -48,9 +48,10 @@ module.exports = (knex) => {
       .insert({creatorid: creatorid[0], polldescription: req.body.pollQuestion, submissionurl: randomPollID, adminurl: randomAdminID}).returning('id')
       .then(function(pollid) {
           let options = Object.values(req.body);
+          console.log(req.body);
           let promises = [];
-          for (let option of options) {
-            promises.push(knex('options').insert({pollid: pollid[0], title: option}));
+          for (let i=1; i < (options.length)-1; i++) {
+            promises.push(knex('options').insert({pollid: pollid[0], title: options[i]}));
           }
           return Promise.all(
             promises
