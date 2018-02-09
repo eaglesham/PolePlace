@@ -15,8 +15,9 @@ module.exports = (knex) => {
     let randomAdminID = generateRandomString();
     let adminEmail = ''; //email submitted from form 
     //add 
+    console.log('TESSTSSSSSSST')
     knex('poll')
-    .insert({polldescription: arg1, submissionurl: arg2, adminurl: arg3});
+    .insert({polldescription: arg1, submissionurl: '/polls/randomPollID', adminurl: '/polls/randomAdminID'});
     knex('options')
     .insert({title: x, description: xx});
     .then(function() {
