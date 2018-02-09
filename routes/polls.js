@@ -3,6 +3,10 @@
 const express = require('express');
 const router  = express.Router();
 
+const api_key = process.env.MAILGUN_API;
+const domain = process.env.MAILGUN_DOMAIN;
+const mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
 function generateRandomString() {
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -20,23 +24,28 @@ module.exports = (knex) => {
   });
 
   router.post("/", (req, res) => {
-    console.log(req.body.pollQuestion, req.body.opt1, req.body.opt2);
-    console.log(Object.values(req.body));
+
     if (!req.body.pollQuestion || !req.body.opt1 || !req.body.opt2) {
       res.status(400).json({ error: 'invalid request: please submit a question with at least 2 options'});
       return;
     }
+    const randomPollID = generateRandomString();
+    const randomAdminID = generateRandomString();
     
-    
-    let adminEmail = ''; //email submitted from form 
-    //add 
     knex('creator')
     .insert({}).returning('id')
     .then(function(creatorid) {
-      let randomPollID = generateRandomString();
-      let randomAdminID = generateRandomString();
+      let data = {
+        from: 'PolePlace <noreply@newpoll.poleplace.com>',
+        to: req.body.creatoremail,
+        subject: 'Your new poll',
+        text: `See your results for ${req.body.pollQuestion} at: http://localhost:8080/admins/${randomAdminID} \nAdd your own input for ${req.body.pollQuestion} at: http://localhost:8080/polls/${randomPollID}`
+      };           
+      mailgun.messages().send(data, function (error, body) {
+        console.log(body);
+      });
       return knex('poll')
-      .insert({creatorid: creatorid[0], polldescription: req.body.pollQuestion, submissionurl: `/polls/${randomPollID}`, adminurl: `/polls/${randomAdminID}`}).returning('id')
+      .insert({creatorid: creatorid[0], polldescription: req.body.pollQuestion, submissionurl: randomPollID, adminurl: randomAdminID}).returning('id')
       .then(function(pollid) {
           let options = Object.values(req.body);
           let promises = [];
@@ -45,13 +54,12 @@ module.exports = (knex) => {
           }
           return Promise.all(
             promises
-          )
+          );
       });
       process.exit();
     });
-   
-
-    res.send()
+    res.redirect(`http://localhost:8080/polls/${randomPollID}`)
+  
   });
   
   return router;
