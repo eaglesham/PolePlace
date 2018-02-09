@@ -56,20 +56,12 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// Create Poll page
-app.get("/create", (req, res) => {
-  res.render("create");
-});
 
 // Poll:id page
 app.get("/polls/:id", (req, res) => {
   res.render("poll");
 });
 
-// Admin page
-app.get("/admins/:id", (req, res) => {
-  res.render("admin");
-});
 
 app.post("/polls", (req, res) => {
     let randomPollID = generateRandomString();

@@ -13,6 +13,13 @@ module.exports = (knex) => {
         res.json(results);
     });
   });
+  
+  // Admin page
+  app.get("/admins/:id", (req, res) => {
+    res.render("admin");
+  });
 
+ 
+ 
   return router;
 }
