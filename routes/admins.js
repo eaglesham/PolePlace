@@ -5,21 +5,20 @@ const router  = express.Router();
 
 module.exports = (knex) => {
 
-  router.get("/", (req, res) => {
+  router.get("/:id", (req, res) => {
+
     knex
       .select("*")
-      .from("users")
+      .from("votes")
       .then((results) => {
-        res.json(results);
+        let templateVars = {votes: results};
+        // console.log(results);
+        // [
+        // anonymous { id: 1, optionid: 1, points: 1 },
+        // anonymous { id: 2, optionid: 2, points: 2 }
+        //]
+        res.render("admin", templateVars);
     });
   });
-  
-  // Admin page
-  app.get("/admins/:id", (req, res) => {
-    res.render("admin");
-  });
-
- 
- 
   return router;
-}
+};
