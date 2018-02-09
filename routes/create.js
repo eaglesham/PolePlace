@@ -4,15 +4,12 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (knex) => {
-
+    // Create Poll page
   router.get("/", (req, res) => {
-    knex
-      .select("*")
-      .from("users")
-      .then((results) => {
-        res.json(results);
-    });
+
+    res.render("create");
   });
 
   return router;
+
 }

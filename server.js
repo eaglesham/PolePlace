@@ -15,8 +15,9 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
-
+const adminRoutes = require("./routes/admins");
+const createRoutes = require("./routes/create");
+const pollRoutes = require("./routes/polls");
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -36,43 +37,14 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(knex));
-
-function generateRandomString() {
-  var text = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for(var i = 0; i < 6; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-}
+app.use("/admins", adminRoutes(knex));
+app.use("/create", createRoutes(knex));
+app.use("/polls", pollRoutes(knex));
 
 
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
-});
-
-// Create Poll page
-app.get("/create", (req, res) => {
-  res.render("create");
-});
-
-// Poll:id page
-app.get("/polls/:id", (req, res) => {
-  res.render("poll");
-});
-
-// Admin page
-app.get("/admins/:id", (req, res) => {
-  res.render("admin");
-});
-
-app.post("/polls", (req, res) => {
-    let randomPollID = generateRandomString();
-    let randomAdminID = generateRandomString();
-    let adminEmail = ''; //email submitted from form 
-    //add 
 });
 
 
