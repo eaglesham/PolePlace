@@ -6,7 +6,9 @@
   </head>
 
   <body>
-    <h1>Question?</h1>
+
+    <h1><%= thispoll[0].polldescription %></h1>
+
     <h2>description</h2>
     <!-- <div class ="row justify-content-center"> -->
       <form id="sendPoll" action="/poll/:id" method="post">
@@ -14,11 +16,9 @@
 
     </div>
         <ul class="list-group">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+          <% for (let obj of thispoll) { %>
+          <li class="list-group-item"><%= obj.title %></li>
+          <% } %>
         </ul><p><p>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
