@@ -21,6 +21,7 @@ module.exports = (knex) => {
 
   router.post("/", (req, res) => {
     console.log(req.body.pollQuestion, req.body.opt1, req.body.opt2);
+    console.log(Object.values(req.body));
     if (!req.body.pollQuestion || !req.body.opt1 || !req.body.opt2) {
       res.status(400).json({ error: 'invalid request: please submit a question with at least 2 options'});
       return;
@@ -31,17 +32,28 @@ module.exports = (knex) => {
     let adminEmail = ''; //email submitted from form 
     //add 
     knex('creator')
-    .insert({})
-    // .then(function() {
-    //   knex('poll')
-    // .insert({creatorid: 4, polldescription: req.body.pollQuestion, submissionurl: '/polls/randomPollID', adminurl: '/polls/randomAdminID'})
-    // })
-    // knex('options')
-    // .insert({title: req.body.op1})
-    // .insert({title: req.body.op2})
-    .then(function() {
-    process.exit();
+    .insert({}).returning('id')
+    .then(function(creatorid) {
+        console.log(creatorid);
+        return knex('poll')
+      .insert({creatorid: creatorid[0], polldescription: req.body.pollQuestion, submissionurl: '/polls/randomPollID', adminurl: '/polls/randomAdminID'}).returning('id')
+      .then(function(pollid) {
+          console.log('IN PROMISE ALL', req.body.opt1, req.body.opt2)
+          let title1 = req.body.opt1;
+          let title2 = req.body.opt2;
+          let options = Object.values(req.body);
+          let promises = [];
+          for (let option of options) {
+            promises.push(knex('options').insert({pollid: pollid[0], title: option}));
+          }
+          return Promise.all(
+            promises
+          )
+      });
+      process.exit();
     });
+   
+
     res.send()
   });
   
