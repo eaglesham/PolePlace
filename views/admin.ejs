@@ -2,29 +2,45 @@
 <html lang="en">
   <head>
     <% include ./partials/_head %>
-
   </head>
 
-  <body>
-     <% for (let obj of votes) { %>
-          <h1>Results for <i>"<%= obj.polldescription %>"</i> </h1>
-        <% } %>
-      <span class="stats">
-        <h2>Stats:</h2>
-        <p>
-        <% for (let obj of votes) { %>
-          <li>"<%= obj.title %>" (<%= obj.description %>) received <%= obj.points %> points.</li>
-        <% } %>
-        <p>
-          <h3>Voter stats:</h3><p>
-        <% for (let obj of votes) { %>
-          <li><%= obj.name %>'s top vote was "<%= obj.title %>" (<%= obj.description %>).</li>
-        <% } %>
+<body>
 
-      </span><p>
-      <form id="deletePoll" action="/poll/:id/delete" method="POST">
-        <input type="submit" value="Delete Poll">
+  <header id="header">
+    <h1><strong><a href="/">Pole</strong>Place</a></h1>
+    <nav id="nav">
+      <form action="/create">
+      <button type="submit" class="btn btn-info">New Poll</button>
+      </form>
+    </nav>
+  </header>
 
-    <% include ./partials/_bootstrap %>
+  <section id="main" class="wrapper">
+  <div class="container">
+  <header class="major special">
+    <% for (let obj of votes) { %>
+    <h2>Results for <i>"<%= obj.polldescription %>"</i> </h2>
+    <% } %>
+    <% for (let obj of votes) { %>
+    <p>("<%= obj.description %>")</i> </h2>
+    <% } %>
+  </header>
+
+  <section class="stats">
+    <h3>Stats:</h3>
+    <p>
+    <% for (let obj of votes) { %>
+    <li>"<%= obj.title %>" (<%= obj.description %>) received <%= obj.points %> points.</li>
+    <% } %>
+    <p>
+    <h3>Voter stats:</h3><p>
+    <% for (let obj of votes) { %>
+    <li><%= obj.name %>'s top vote was "<%= obj.title %>" (<%= obj.description %>).</li>
+    <% } %>
+  <hr />
+</section>
+
+  <p><form id="deletePoll" action="/poll/:id/delete" method="POST">
+  <button type="submit" class="btn btn-danger">Delete Poll</button>
   </body>
 </html>
