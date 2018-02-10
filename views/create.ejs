@@ -2,37 +2,51 @@
 <html lang="en">
   <head>
     <% include ./partials/_head %>
-
   </head>
 
-  <body>
-    <h1>Create</h1>
-    <div class ="row justify-content-center">
-    <div class ="pollContainer">
-      <form id="createPoll" action="/polls" method="POST">
-        <input name="pollQuestion" type="text" placeholder="Ask your question here"><p>
-        <div class ="options">
-          <!-- Insert options here -->
-          <div class="opt">
-            <span class="numbering">1.</span><input name="opt1" type="text" placeholder="Option 1..."></div>
-          <div class="opt">
-            <span class="numbering">2.</span><input name="opt2" type="text" placeholder="Option 2..."></div>
-          <div class="opt">
-            <span class="numbering">3.</span><input name="opt3" type="text" placeholder="Option 3..."></div><p>
+<body>
 
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" name="creatoremail" placeholder="your-email" aria-label="Recipient's username" aria-describedby="basic-addon2">
-              <div class="input-group-append">  
-              </div>
-            </div>
-            </div>
-            <button class="btn btn-outline-info" type="submit">
-        Submit
-        </button>
-      </form>
+  <header id="header">
+    <h1><strong><a href="index.html">Pole</strong>Place</a></h1>
+  </header>
 
+  <section id="main" class="wrapper">
+  <div class="container">
+  <header class="major special">
+    <h2>Create New Poll</h2>
+    <p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+  </header>
 
+  <section>
 
+  <div class ="pollContainer">
+  <form id="createPoll" action="/polls" method="POST">
+
+  <div class="12u$">
+    <input name="pollQuestion" type="text" placeholder="Ask your question here">
+  <div class ="options">
+  <div class="opt">
+    <span class="numbering">1.<input name="opt1" type="text" placeholder="Option 1..."></div></span>
+  <div class="opt">
+    <span class="numbering">2.</span><input name="opt2" type="text" placeholder="Option 2..."></div>
+  <div class="opt">
+    <span class="numbering">3.</span><input name="opt3" type="text" placeholder="Option 3..."></div><p>
+
+  <div class="12u$">
+    <input type="email" name="creatoremail" id="email" value="" placeholder="Email" />
+  </div><p>
+  </div>
+
+  <div class="12u$">
+  <ul class="actions">
+    <li><button type="submit" class="btn btn-info" />Ask Question</li>
+    <li><button type="reset" class="btn btn-danger" />Reset</li>
+  </ul>
+
+  </div>
+  </div>
+  </form>
+  </section>
     <% include ./partials/_bootstrap %>
   </body>
 </html>
