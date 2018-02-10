@@ -9,5 +9,8 @@ $(document).ready(() => {
     }
   });
   
+  const $voteButton = $('#vote-button');
+
+
 });
 
