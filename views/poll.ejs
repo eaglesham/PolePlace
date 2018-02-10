@@ -14,8 +14,8 @@
     <div class="pollList">
     </div>
     <ul class="sortable">
-      <% for (let obj of thispoll) { %>
-      <li class="list-group-item" draggable="true"><%= obj.title %></li>
+      <% for (let i=0; i < thispoll.length; i++) { %>
+      <li class="list-group-item"  draggable="true" value="<%= thispoll.length - i %>"><%= thispoll[i].title %></li>
       <% } %>
     </ul><p><p>
       <div class="input-group mb-3">
