@@ -19,9 +19,19 @@ function generateRandomString() {
 module.exports = (knex) => {
     // Create Poll page
   router.get("/:id", (req, res) => {
+    const pollID = req.params.id;
 
-    res.render("poll");
+    knex('poll')
+      .join('options', 'poll.id', '=', 'options.pollid')
+      .where('submissionurl', '=', pollID)
+      .select('polldescription', 'title', 'description')
+      .then((results) => {
+        let templateVars = {thispoll: results};
+        console.log(results)
+        res.render("poll", templateVars);
+      });
   });
+
 
   router.post("/", (req, res) => {
 
@@ -48,7 +58,6 @@ module.exports = (knex) => {
       .insert({creatorid: creatorid[0], polldescription: req.body.pollQuestion, submissionurl: randomPollID, adminurl: randomAdminID}).returning('id')
       .then(function(pollid) {
           let options = Object.values(req.body);
-          console.log(req.body);
           let promises = [];
           for (let i=1; i < (options.length)-1; i++) {
             promises.push(knex('options').insert({pollid: pollid[0], title: options[i]}));
