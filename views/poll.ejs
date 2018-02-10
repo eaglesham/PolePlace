@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <% include ./partials/_head %>
-
   </head>
 
   <body>
@@ -13,13 +12,12 @@
     <!-- <div class ="row justify-content-center"> -->
       <form id="sendPoll" action="/poll/:id" method="post">
     <div class="pollList">
-
     </div>
-        <ul class="list-group">
-          <% for (let obj of thispoll) { %>
-          <li class="list-group-item"><%= obj.title %></li>
-          <% } %>
-        </ul><p><p>
+    <ul class="sortable">
+      <% for (let obj of thispoll) { %>
+      <li class="list-group-item" draggable="true"><%= obj.title %></li>
+      <% } %>
+    </ul><p><p>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Whose opinion is this?</span>
