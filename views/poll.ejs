@@ -4,44 +4,44 @@
     <% include ./partials/_head %>
   </head>
 
-  <body>
+<body>
 
-    <h1><%= thispoll[0].polldescription %></h1>
+  <header id="header">
+    <h1><strong><a href="/">Pole</strong>Place</a></h1>
+  </header>
 
-    <h2>description</h2>
-    <!-- <div class ="row justify-content-center"> -->
-      <form id="sendPoll" action="/poll/:id" method="post">
-    <div class="pollList">
-    </div>
-    <ul class="sortable">
-      <% for (let i=0; i < thispoll.length; i++) { %>
-      <li class="list-group-item"  draggable="true" value="<%= thispoll.length - i %>"><%= thispoll[i].title %></li>
-      <% } %>
-    </ul><p><p>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">Whose opinion is this?</span>
-        </div>
-        <input type="text" class="form-control" placeholder="Enter your name" aria-label="Name" aria-describedby="basic-addon1">
-      </div>
+  <section id="main" class="wrapper">
+  <div class="container">
+  <header class="major special">
+    <h2><%= thispoll[0].polldescription %></h2>
+    <p><%= thispoll[0].description %>
+  </header>
 
-      <p><p>
+  <form id="sendPoll" action="/poll/:id" method="post">
+  <div class="pollList">
+  <ul class="sortable">
+    <% for (let i=0; i < thispoll.length; i++) { %>
+    <li class="list-group-item"  draggable="true" value="<%= thispoll.length - i %>"><%= thispoll[i].title %></li>
+    <% } %>
+  </ul><p><p>
+  </div>
 
+  <div class="12u$">
+    <input type="text" name="pollername" id="pollername" value="" placeholder="Enter your Name" />
+  </div><p>
 
-        <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Submit
-        </button>
-      </p>
-        <div class="collapse" id="collapseExample">
-          <div class="card card-body">
-              <h3>Results</h3>
-            <span class="results">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</span>
-            <span class="resultLinks"></span>
-        </div>
-      </div>
-    </div>
+ <p><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Submit
+  </button>
 
-
+  <div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <h3>Results</h3>
+      <span class="results">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</span>
+    <span class="resultLinks"></span>
+  </div>
+</div>
+</div>
     <% include ./partials/_bootstrap %>
   </body>
 </html>
