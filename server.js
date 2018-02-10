@@ -47,6 +47,15 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+//Delete poll
+app.post("/polls/:id/delete", (req, res) => {
+  let url = req.params.id;
+  knex('poll')
+    .where ('poll.adminurl', url)
+    .del();
+  res.redirect('/');
+});
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
