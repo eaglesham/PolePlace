@@ -32,7 +32,8 @@ module.exports = (knex) => {
         let templateVars = {
           thispoll: results
         };
-        console.log(results)
+
+        console.log("THESE ARE RESULTS", results);
         res.render("poll", templateVars);
       })
   });
@@ -46,6 +47,7 @@ module.exports = (knex) => {
       });
       return;
     }
+
     const randomPollID = generateRandomString();
     const randomAdminID = generateRandomString();
 

@@ -20,34 +20,36 @@
   <section>
   <div class ="pollContainer">
   <form id="createPoll" action="/polls" method="POST">
-<div class="row uniform 50%">
-  <div class="6u$ 12u$(xsmall)">
+  <div class="12u$">
     <input name="pollQuestion" type="text" placeholder="Ask your question here">
+  </div><p>
+
+  <div class="row uniform 50%">
+  <div class="6u$ 12u$(xsmall)">
+    <input name="opt1" type="text" placeholder="Option 1...">
   </div>
   <div class="6u$ 12u$(xsmall)">
-    <input name="pollDescription" type="text" placeholder="Include an optional description...">
-</div>
-</div><p>
+    <input name="pollDescription" type="text" placeholder="Add a description (optional)">
+  </div>
+  <div class="6u$ 12u$(xsmall)">
+    <input name="opt2" type="text" placeholder="Option 2...">
+  </div>
+    <div class="6u$ 12u$(xsmall)">
+      <input name="pollDescription" type="text" placeholder="Add a description (optional)">
+  </div>
+  <div class="6u$ 12u$(xsmall)">
+    <input name="opt3" type="text" placeholder="Option 3...">
+  </div>
+    <div class="6u$ 12u$(xsmall)">
+      <input name="pollDescription" type="text" placeholder="Add a description (optional)">
+  </div>
+  </div><p>
 
-  <div class ="options">
-
-  <div class="12u$">
-  <div class="opt">
-    <ol>
-    <li><input name="opt1" type="text" placeholder="Option 1..."></li><p>
-
-    <li></span><input class="smaller" name="opt2" type="text" placeholder="Option 2..."></li><p>
-
-    <li><input class="smaller" name="opt3" type="text" placeholder="Option 3..."></li><p>
-    </ol>
-
-    <div class="1u$ 6u$(xsmall)">
-                  <ul class="actions fit small">
-                    <li><button type="submit" class="button alt small">➕</a></li>
-                  </ul>
-                </div><p>
-
-
+  <div class="1u$ 6u$(xsmall)">
+  <ul class="actions fit small">
+     <li><button type="submit" class="button alt small">➕</a></li>
+  </ul>
+  </div><p>
 
   <div class="12u$">
     <input type="email" name="creatoremail" id="email" value="" placeholder="Email" />
