@@ -91,5 +91,11 @@ module.exports = (knex) => {
 
   });
 
+  router.post("/votes", (req, res) => {
+    knex('votes')
+    .insert({
+      points: something
+    });
+  });
   return router;
 }
