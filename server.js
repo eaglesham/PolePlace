@@ -51,8 +51,8 @@ app.get("/", (req, res) => {
 app.post("/polls/:id/delete", (req, res) => {
   let url = req.params.id;
   knex('poll')
-    .where ('poll.adminurl', url)
-    .del();
+    .del()
+    .where('poll.adminurl', url);
   res.redirect('/');
 });
 
