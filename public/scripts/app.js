@@ -18,20 +18,15 @@ $(document).ready(() => {
       let currentListItem = $($('.list-group-item')[i]).html()
       valueObj[currentListItem] = $($('.list-group-item')[i]).attr('value');
     }  
-      //let formData = $("#textarea");
-      $.ajax({
-        url: '/polls/vote',
-        method: 'POST',
-        data: valueObj,
-        success: function () {
-            console.log('SUCCESS!', data);
-      //     knex('votes')
-      //     .insert({
-      //       optionid: creatorid[0],
-      //       points: 2
-      //     }); 
-        }   
-      }) 
+
+    $.ajax({
+      url: '/polls/vote',
+      method: 'POST',
+      data: valueObj,
+      success: function () {
+          console.log('SUCCESS!', valueObj);
+      }   
+    }) 
 
   })
 
