@@ -18,9 +18,7 @@
   <section id="main" class="wrapper">
   <div class="container">
   <header class="major special">
-    <% for (let obj of votes) { %>
-    <h2>Results for <i>"<%= obj.polldescription %>"</i> </h2>
-    <% } %>
+    <h2>Results for <i>"<%= votes[0].polldescription %>"</i></h2>
   </header>
 
   <section class="stats">
@@ -32,11 +30,6 @@
     <% } %>
     <p>
     </ul>
-    <h3>Voter stats:</h3><p>
-    <ul style="list-style-type:circle">
-    <% for (let obj of votes) { %>
-    <li><%= obj.name %>'s top vote was "<%= obj.title %>" (<%= obj.description %>).</li>
-    <% } %>
   <hr />
   </ul>
 </section>
