@@ -21,7 +21,7 @@
   <div class="pollList">
   <ul class="sortable">
     <% for (let i=0; i < thispoll.length; i++) { %>
-    <li class="list-group-item"  draggable="true" value="<%= (thispoll.length - i) %>"><%= thispoll[i].title %></li>
+    <li class="list-group-item"  draggable="true" value="<%= (thispoll.length - i) %>"><%= thispoll[i].title %></br><i><%= thispoll[i].description %></i></li>
     <% } %>
   </ul><p><p>
   </div>
