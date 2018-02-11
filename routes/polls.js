@@ -33,7 +33,6 @@ module.exports = (knex) => {
         let templateVars = {
           thispoll: results
         };
-        console.log(templateVars);
         res.render("poll", templateVars);
       })
   });
@@ -62,7 +61,6 @@ module.exports = (knex) => {
         text: `See your results for ${req.body.pollQuestion} at: http://localhost:8080/admins/${randomAdminID} \nAdd your own input for ${req.body.pollQuestion} at: http://localhost:8080/polls/${randomPollID}`
       };
       mailgun.messages().send(data, function (error, body) {
-        console.log(body);
       });
       return knex('poll')
       .insert({
@@ -73,14 +71,14 @@ module.exports = (knex) => {
       }).returning('id')
       .then(function (pollid) {
         let options = Object.values(req.body);
-        console.log(req.body);
         console.log(options);
         let promises = [];
         for (let i = 1; i < (options.length) - 2; i++) {
           if (i % 2 !== 0) {
             promises.push(knex('options').insert({
               pollid: pollid[0],
-              title: options[i]
+              title: options[i],
+              description: options[i+1]
             }));
           }
         }
@@ -102,7 +100,7 @@ module.exports = (knex) => {
     .select('id')
     .orderBy('id', 'desc')
     .then((results) => {
-      //console.log(results[0], req.body);
+      console.log(req.body);
       let i = 0;
       let optionsPromises = [];
       for (let vote in req.body) {
@@ -118,6 +116,7 @@ module.exports = (knex) => {
       )
     });
     
+    res.send();
   });
   return router;
 }
