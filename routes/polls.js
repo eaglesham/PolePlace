@@ -33,7 +33,7 @@ module.exports = (knex) => {
         let templateVars = {
           thispoll: results
         };
-
+        console.log(templateVars);
         res.render("poll", templateVars);
       })
   });
@@ -73,14 +73,16 @@ module.exports = (knex) => {
       }).returning('id')
       .then(function (pollid) {
         let options = Object.values(req.body);
-        let promises = [];
+        console.log(req.body);
         console.log(options);
-        for (let i = 1; i < (options.length) - 2; i+2) {
-          promises.push(knex('options').insert({
-            pollid: pollid[0],
-            title: options[i],
-            description: options[i+1]
-          }));
+        let promises = [];
+        for (let i = 1; i < (options.length) - 2; i++) {
+          if (i % 2 !== 0) {
+            promises.push(knex('options').insert({
+              pollid: pollid[0],
+              title: options[i]
+            }));
+          }
         }
         return Promise.all(
           promises
@@ -100,11 +102,11 @@ module.exports = (knex) => {
     .select('id')
     .orderBy('id', 'desc')
     .then((results) => {
-      console.log(results[0], req.body);
+      //console.log(results[0], req.body);
       let i = 0;
       let optionsPromises = [];
       for (let vote in req.body) {
-        console.log(vote);
+        //console.log(vote);
         optionsPromises.push(knex('votes').insert({
           optionid: results[i].id,
           points: req.body[vote]

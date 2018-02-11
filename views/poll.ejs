@@ -20,9 +20,9 @@
   <form id="send-vote" action="/polls/vote" method="post">
   <div class="pollList">
   <ul class="sortable">
-    <% for (let i=0; i < thispoll.length; i++) { if (i % 2 === 0) { %>
+    <% for (let i=0; i < thispoll.length; i++) { %>
     <li class="list-group-item"  draggable="true" value="<%= (thispoll.length - i) / 2 %>"><%= thispoll[i].title %></li>
-    <% }} %>
+    <% } %>
   </ul><p><p>
   </div>
 
