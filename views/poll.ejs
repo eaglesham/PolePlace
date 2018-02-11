@@ -16,12 +16,12 @@
     <h2><%= thispoll[0].polldescription %></h2>
   </header>
 
-  <form id="sendPoll" action="/poll/:id" method="post">
+  <form id="send-vote" action="/polls/vote" method="post">
   <div class="pollList">
   <ul class="sortable">
-    <% for (let i=0; i < thispoll.length; i++) { %>
-    <li class="list-group-item"  draggable="true" value="<%= thispoll.length - i %>"><%= thispoll[i].title %></li>
-    <% } %>
+    <% for (let i=0; i < thispoll.length; i++) { if (i % 2 === 0) { %>
+    <li class="list-group-item"  draggable="true" value="<%= (thispoll.length - i) / 2 %>"><%= thispoll[i].title %></li>
+    <% }} %>
   </ul><p><p>
   </div>
 
@@ -29,10 +29,10 @@
     <input type="text" name="pollername" id="pollername" value="" placeholder="Enter your Name" />
   </div><p>
 
- <p><button class="btn btn-info" id="vote-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  <button class="btn btn-info" id="vote-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     Submit
   </button>
-
+ </form>
   <div class="collapse" id="collapseExample">
   <div class="card card-body">
     <h3>Results</h3>

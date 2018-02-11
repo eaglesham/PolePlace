@@ -1,5 +1,4 @@
 $(document).ready(() => {
-  
 
   $('.sortable').sortable().bind('sortupdate', function(e, ui) {
     
@@ -17,12 +16,24 @@ $(document).ready(() => {
   $voteButton.on('click', function (event) {
     for (let i=0; i < $('.list-group-item').length; i++) {
       let currentListItem = $($('.list-group-item')[i]).html()
-      console.log(currentListItem)
       valueObj[currentListItem] = $($('.list-group-item')[i]).attr('value');
-    }
-    console.log(valueObj);
+    }  
+      //let formData = $("#textarea");
+      $.ajax({
+        url: '/polls/vote',
+        method: 'POST',
+        data: valueObj,
+        success: function () {
+            console.log('SUCCESS!', data);
+      //     knex('votes')
+      //     .insert({
+      //       optionid: creatorid[0],
+      //       points: 2
+      //     }); 
+        }   
+      }) 
+
   })
-  
 
 });
 

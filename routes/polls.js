@@ -1,5 +1,6 @@
 "use strict";
 
+
 const express = require('express');
 const router = express.Router();
 
@@ -33,7 +34,6 @@ module.exports = (knex) => {
           thispoll: results
         };
 
-        console.log("THESE ARE RESULTS", results);
         res.render("poll", templateVars);
       })
   });
@@ -74,10 +74,12 @@ module.exports = (knex) => {
       .then(function (pollid) {
         let options = Object.values(req.body);
         let promises = [];
-        for (let i = 1; i < (options.length) - 1; i++) {
+        console.log(options);
+        for (let i = 1; i < (options.length) - 2; i+2) {
           promises.push(knex('options').insert({
             pollid: pollid[0],
-            title: options[i]
+            title: options[i],
+            description: options[i+1]
           }));
         }
         return Promise.all(
@@ -91,11 +93,29 @@ module.exports = (knex) => {
 
   });
 
-  router.post("/votes", (req, res) => {
-    knex('votes')
-    .insert({
-      points: something
+  router.post("/vote", (req, res) => {
+    console.log('REACHED POST');
+
+    knex('options')
+    .select('id')
+    .orderBy('id', 'desc')
+    .then((results) => {
+      console.log(results[0], req.body);
+      let i = 0;
+      let optionsPromises = [];
+      for (let vote in req.body) {
+        console.log(vote);
+        optionsPromises.push(knex('votes').insert({
+          optionid: results[i].id,
+          points: req.body[vote]
+        }));
+        i++;
+      }
+      return Promise.all(
+        optionsPromises
+      )
     });
+    
   });
   return router;
 }
