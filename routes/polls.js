@@ -71,7 +71,8 @@ module.exports = (knex) => {
       }).returning('id')
       .then(function (pollid) {
         let options = Object.values(req.body);
-        console.log(options);
+        console.log(req.body);
+        //console.log(options);
         let promises = [];
         for (let i = 1; i < (options.length) - 2; i++) {
           if (i % 2 !== 0) {
