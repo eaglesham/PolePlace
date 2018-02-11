@@ -1,4 +1,3 @@
-@import url(font-awesome.min.css);
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
 /*
   Spatial by TEMPLATED
@@ -2590,11 +2589,11 @@ body.is-touch .wrapper.style3 {
   color: #ffffff !important;
 }
 
-/* @media screen and (max-width: 980px) {
-  #header {
+ @media screen and (max-width: 980px) {
+  #header.disappear {
     display: none;
   }
-} */
+}
 
 /* Banner */
 body.is-touch #banner {

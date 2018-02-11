@@ -26,15 +26,19 @@
   <section class="stats">
     <h3>Stats:</h3>
     <p>
+    <ul style="list-style-type:circle">
     <% for (let obj of votes) { %>
     <li>"<%= obj.title %>" (<%= obj.description %>) received <%= obj.points %> points.</li>
     <% } %>
     <p>
+    </ul>
     <h3>Voter stats:</h3><p>
+    <ul style="list-style-type:circle">
     <% for (let obj of votes) { %>
     <li><%= obj.name %>'s top vote was "<%= obj.title %>" (<%= obj.description %>).</li>
     <% } %>
   <hr />
+  </ul>
 </section>
 
   <p><form id="deletePoll" action="/polls/:id/delete" method="POST">

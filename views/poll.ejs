@@ -14,6 +14,7 @@
   <div class="container">
   <header class="major special">
     <h2><%= thispoll[0].polldescription %></h2>
+    <p>Drag and drop options to rank them
   </header>
 
   <form id="sendPoll" action="/poll/:id" method="post">
@@ -32,6 +33,8 @@
  <p><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     Submit
   </button>
+
+  //POST TO POLL/VOTES
 
   <div class="collapse" id="collapseExample">
   <div class="card card-body">
