@@ -13,11 +13,18 @@ module.exports = (knex) => {
       .join('votes', 'options.id', 'votes.optionid')
       // .join('voters', 'votes.optionid', '=', 'voters.id')
       .select('polldescription', 'title', 'description', 'adminurl', 'optionid', 'points')
+      // , function() {
+      //   this.sum('points as total').groupBy('title');
+      // }
       .then((results) => {
         let templateVars = {votes: results};
-        console.log(results);
+        // if (templateVars === {}) {
+        //   res.send({ error: 'this poll has not received any votes yet' });
+        // } else
         res.render("admin", templateVars);
     });
   });
   return router;
 };
+
+//.sum('points as total').groupBy('title')
