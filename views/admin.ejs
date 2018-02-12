@@ -5,7 +5,7 @@
   </head>
 
 <body>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
   <header id="header">
     <h1><strong><a href="/">Pole</strong>Place</a></h1>
     <nav id="nav">
@@ -34,9 +34,31 @@
     <li>"<%= obj %>" received <%= votesTotals[obj] %> points.</li>
     <% } %>
     <p>
-    </ul>
   <hr />
   </ul>
+  <p>
+  <canvas id="myChart" width="400" height="400"></canvas>
+  <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'pie',
+
+    // The data for our dataset
+    data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        datasets: [{
+            label: "My First dataset",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45],
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+    });
+  </script>
 </section>
 
   <p><form id="deletePoll" action="/polls/:id/delete" method="POST">
