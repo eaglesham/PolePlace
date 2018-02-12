@@ -12,16 +12,12 @@ module.exports = (knex) => {
       .join('options', 'poll.id', 'options.pollid')
       .where('adminurl',adminID)
       .join('votes', 'options.id', 'votes.optionid')
-      // .join('voters', 'votes.optionid', '=', 'voters.id')
       .select('polldescription', 'title', 'description', 'adminurl', 'optionid', 'points')
-      // , function() {
-      //   this.sum('points as total').groupBy('title');
-      // }
+
       .then((results) => {
         //console.log(results); 
         let resultsTotals = {};
-        for (let obj of results) {
-          
+        for (let obj of results) {        
           if (!resultsTotals[obj.title]) {
           resultsTotals[obj.title] = obj.points;
           } else {

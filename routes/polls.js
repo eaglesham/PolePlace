@@ -30,8 +30,16 @@ module.exports = (knex) => {
       .where('submissionurl', '=', pollID)
       .select('polldescription', 'title', 'description')
       .then((results) => {
+        console.log(results)
+        let newResults = [];
+        for (let i = 0; i < results.length; i++) {       
+          if (results[i].title !== '') {
+            newResults.push(results[i]);
+          }
+        }  
+        console.log(newResults)
         let templateVars = {
-          thispoll: results
+          thispoll: newResults
         };
         res.render("poll", templateVars);
       })
