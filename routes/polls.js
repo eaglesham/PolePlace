@@ -24,23 +24,22 @@ module.exports = (knex) => {
   // Create Poll page
   router.get("/:id", (req, res) => {
     const pollID = req.params.id;
-
+    let newResults = [];
+    let templateVars = {
+      thispoll: newResults
+    };
+    
     knex('poll')
       .join('options', 'poll.id', '=', 'options.pollid')
       .where('submissionurl', '=', pollID)
       .select('polldescription', 'title', 'description')
       .then((results) => {
-        console.log(results)
-        let newResults = [];
+
         for (let i = 0; i < results.length; i++) {       
           if (results[i].title !== '') {
             newResults.push(results[i]);
           }
-        }  
-        console.log(newResults)
-        let templateVars = {
-          thispoll: newResults
-        };
+        }         
         res.render("poll", templateVars);
       })
   });
