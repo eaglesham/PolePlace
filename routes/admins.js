@@ -15,9 +15,9 @@ module.exports = (knex) => {
       .select('polldescription', 'title', 'description', 'adminurl', 'optionid', 'points')
 
       .then((results) => {
-        //console.log(results); 
+        //console.log(results);
         let resultsTotals = {};
-        for (let obj of results) {        
+        for (let obj of results) {
           if (!resultsTotals[obj.title]) {
           resultsTotals[obj.title] = obj.points;
           } else {
@@ -32,6 +32,7 @@ module.exports = (knex) => {
         res.render("admin", templateVars);
     });
   });
+
   return router;
 };
 

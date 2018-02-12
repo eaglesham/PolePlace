@@ -56,6 +56,31 @@ app.post("/polls/:id/delete", (req, res) => {
   res.redirect('/');
 });
 
+  app.post('/chart-data', (req, res) => {
+    console.log(req.body);
+   var id = (req.body.url).substr((req.body.url).length - 6);
+   console.log('THE ID', id)
+    knex('poll')
+      .join('options', 'poll.id', 'options.pollid')
+      .where('adminurl', id)
+      .join('votes', 'options.id', 'votes.optionid')
+      .select('polldescription', 'title', 'description', 'adminurl', 'optionid', 'points')
+
+      .then((results) => {
+        //console.log(results);
+        let resultsTotals = {};
+        for (let obj of results) {
+          if (!resultsTotals[obj.title]) {
+          resultsTotals[obj.title] = obj.points;
+          } else {
+            resultsTotals[obj.title] += obj.points;
+          }
+        }
+        //console.log(resultsTotals);
+        let templateVars = {votes: results, votesTotals: resultsTotals};
+    res.json(templateVars);
+  });
+    });
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
