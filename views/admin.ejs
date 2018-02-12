@@ -23,10 +23,15 @@
 
   <section class="stats">
     <h3>Stats:</h3>
-    <p>
+    <p><% var result = votes.reduce(function(acc, v) { %>
+    <% acc[v.title] = (acc[v.title] || 0) + v.points %>
+    <% return acc %>
+    <% }, {}) %>
+    <% console.log(result) %>
+
     <ul style="list-style-type:circle">
     <% for (let obj of votes) { %>
-    <li>"<%= obj.title %>" (<%= obj.description %>) received <%= obj.points %> points.</li>
+    <li>"<%= obj.title %>" received <%= obj.points %> points.</li>
     <% } %>
     <p>
     </ul>
