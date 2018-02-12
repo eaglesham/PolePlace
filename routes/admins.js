@@ -7,6 +7,7 @@ module.exports = (knex) => {
 
   router.get("/:id", (req, res) => {
     const adminID = req.params.id;
+
     knex('poll')
       .join('options', 'poll.id', 'options.pollid')
       .where('adminurl',adminID)
@@ -17,10 +18,21 @@ module.exports = (knex) => {
       //   this.sum('points as total').groupBy('title');
       // }
       .then((results) => {
-        let templateVars = {votes: results};
-        // if (templateVars === {}) {
-        //   res.send({ error: 'this poll has not received any votes yet' });
-        // } else
+        //console.log(results); 
+        let resultsTotals = {};
+        for (let obj of results) {
+          
+          if (!resultsTotals[obj.title]) {
+          resultsTotals[obj.title] = obj.points;
+          } else {
+            resultsTotals[obj.title] += obj.points;
+          }
+        }
+        //console.log(resultsTotals);
+        let templateVars = {votes: results, votesTotals: resultsTotals};
+        if (!templateVars) {
+          res.send({ error: 'this poll has not received any votes yet' });
+        } else
         res.render("admin", templateVars);
     });
   });

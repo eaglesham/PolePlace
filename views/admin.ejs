@@ -30,8 +30,8 @@
     <% console.log(result) %>
 
     <ul style="list-style-type:circle">
-    <% for (let obj of votes) { %>
-    <li>"<%= obj.title %>" received <%= obj.points %> points.</li>
+    <% for (let obj in votesTotals) { %>
+    <li>"<%= obj %>" received <%= votesTotals[obj] %> points.</li>
     <% } %>
     <p>
     </ul>
@@ -41,5 +41,7 @@
 
   <p><form id="deletePoll" action="/polls/:id/delete" method="POST">
   <button type="submit" class="btn btn-danger">Delete Poll</button>
-  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/vendor/jquery.sortable.js"></script>
+</body>
 </html>
