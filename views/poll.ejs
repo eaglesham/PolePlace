@@ -1,54 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <% include ./partials/_head %>
-  </head>
+
+<head>
+  <% include ./partials/_head %>
+</head>
 
 <body>
 
   <header id="header">
+<<<<<<< HEAD
     <h1><strong><a href="/">Pole</strong>Place</a></h1>
     <nav id="nav">
       <form action="/create">
       <button type="submit" class="btn btn-info">New Poll</button>
       </form>
     </nav>
+=======
+    <h1>
+      <strong>
+        <a href="/">Pole</strong>Place</a>
+    </h1>
+>>>>>>> pollcreation
   </header>
 
   <section id="main" class="wrapper">
-  <div class="container">
-  <header class="major special">
-    <h2><%= thispoll[0].polldescription %></h2>
-    <p>Drag and drop options to rank them from best to worst
-  </header>
+    <div class="container">
+      <header class="major special">
+        <h2>
+          <%= thispoll[0].polldescription %>
+        </h2>
+        <p>Drag and drop options to rank them from best to worst
+      </header>
 
-  <form id="send-vote" action="/polls/vote" method="post">
-  <div class="pollList">
-  <ul class="sortable">
-    <% for (let i=0; i < thispoll.length; i++) { %>
-    <li class="list-group-item"  draggable="true" value="<%= (thispoll.length - i) %>"><%= thispoll[i].title %></br><i><%= thispoll[i].description %></i></li>
-    <% } %>
-  </ul><p><p>
-  </div>
+      <form id="send-vote" action="/polls/vote" method="post">
+        <div class="pollList">
+          <ul class="sortable">
+            <% for (let i=0; i < thispoll.length; i++) { %>
+              <li class="list-group-item" draggable="true" value="<%= (thispoll.length - i) %>">
+                <%= thispoll[i].title %>
+                  </br>
+                  <i>
+                    <%= thispoll[i].description %>
+                  </i>
+              </li>
+              <% } %>
+          </ul>
+          <p>
+            <p>
+        </div>
 
-  <!-- <div class="12u$">
+        <!-- <div class="12u$">
     <input type="text" name="pollername" id="pollername" value="" placeholder="Enter your Name" />
   </div><p> -->
 
-  <button class="btn btn-info" id="vote-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Submit
-  </button>
- </form>
-  <div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    <h6>Vote submitted. You're welcome.</h6>
-    <h6>Your submission may have made a difference.</h6>
-    <h3>Results</h3>
-      <span class="results">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</span>
-    <span class="resultLinks"></span>
-  </div>
-</div>
-</div>
+        <button class="btn btn-info" id="vote-button" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+          aria-controls="collapseExample">
+          Submit
+        </button>
+      </form>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <h4>Vote submitted. You're welcome.</h4>
+          <h4>Your submission may have made a difference.</h4>
+        </div>
+      </div>  
     <% include ./partials/_bootstrap %>
-  </body>
+</body>
+
 </html>
