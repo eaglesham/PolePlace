@@ -14,40 +14,46 @@
   <div class="container">
   <header class="major special">
     <h2>Create New Poll</h2>
-    <p>Ask Away!
   </header>
 
   <section>
   <div class ="pollContainer">
-  <form id="createPoll" action="/polls" method="POST">
+  <form action="/polls" method="POST">
   <div class="12u$">
     <input name="pollQuestion" type="text" placeholder="Ask your question here">
   </div><p>
 
-  <div class="row uniform 50%">
+  <div class="row uniform 50%" id="createpoll">
   <div class="6u$ 12u$(xsmall)">
-    <input name="opt1" type="text" placeholder="Option 1...">
+    <input name="opt1" type="text" placeholder="A worthy response to your question...">
   </div>
   <div class="6u$ 12u$(xsmall)">
     <input name="pollDescription1" type="text" placeholder="Add a description (optional)">
   </div>
   <div class="6u$ 12u$(xsmall)">
-    <input name="opt2" type="text" placeholder="Option 2...">
+    <input name="opt2" type="text" placeholder="Another option...">
   </div>
     <div class="6u$ 12u$(xsmall)">
       <input name="pollDescription2" type="text" placeholder="Add a description (optional)">
   </div>
   <div class="6u$ 12u$(xsmall)">
-    <input name="opt3" type="text" placeholder="Option 3...">
+    <input name="opt3" type="text" placeholder="Another option...">
   </div>
     <div class="6u$ 12u$(xsmall)">
       <input name="pollDescription3" type="text" placeholder="Add a description (optional)">
   </div>
+  <div class="6u$ 12u$(xsmall)">
+    <input name="opt4" type="text" placeholder="Another option...">
+  </div>
+    <div class="6u$ 12u$(xsmall)">
+      <input name="pollDescription4" type="text" placeholder="Add a description (optional)">
+  </div>
   </div><p>
 
+  <p>Another option?</p>
   <div class="1u$ 6u$(xsmall)">
   <ul class="actions fit small">
-     <li><button type="submit" class="button alt small">➕</a></li>
+     <li><button id="add-option" type="submit" class="button alt small">➕</a></li>
   </ul>
   </div><p>
 
