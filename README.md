@@ -16,7 +16,8 @@ Options can be added dynamically, with a maximum of 10 total.
 Votes are calculated through the Borda Count method, where points are assigned based on draggable rankings.
 
 ![screenshot of results](https://github.com/rachie-dxo/midterm/blob/master/docs/chart.png)
-Results page, visible only to admin who is emailed the link. Somehow, wine lost.
+
+Results page, visible only to the creator of the poll, who is emailed the link. Somehow, wine lost.
 
 ## Getting Started
 
