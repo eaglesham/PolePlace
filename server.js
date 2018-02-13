@@ -57,9 +57,7 @@ app.post("/polls/:id/delete", (req, res) => {
 });
 
   app.post('/chart-data', (req, res) => {
-    console.log(req.body);
    var id = (req.body.url).substr((req.body.url).length - 6);
-   console.log('THE ID', id)
     knex('poll')
       .join('options', 'poll.id', 'options.pollid')
       .where('adminurl', id)
