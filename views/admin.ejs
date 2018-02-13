@@ -21,15 +21,15 @@
     <h2>Results for <i>"<%= votes[0].polldescription %>"</i> </h2>
     <p>
   </header>
-  <section class="chart">
-  <canvas id="myChart" width="300 " height="300"></canvas>
+
+  <canvas id="myChart" width="200 " height="200"></canvas>
   <% const valueArray = Object.values(votesTotals) %>
   <% const labelArray = Object.keys(votesTotals) %>
 
   <script>
     var url = window.location.href;
     console.log(url);
-$.ajax({
+    $.ajax({
       url: '/chart-data',
       method: 'POST',
       data: {url: url},
@@ -45,10 +45,19 @@ $.ajax({
     data: {
         labels: labelArray,
         datasets: [{
-            label: "Results",
-            backgroundColor: 'rgb(0,165,187)',
-            borderColor: 'rgb(175,238,238)',
-            data: valueArray,
+          label: "Results",
+          backgroundColor: [
+          'rgb(0,165,187)',
+          'rgb(32,178,170)',
+          'rgb(152,251,152)',
+          'rgb(0,250,154)',
+          'rgb(0,255,255)',
+          'rgb(65,105,225)',
+          'rgb(46,139,87)',
+
+          ],
+        borderColor: 'rgb(32,178,170)',
+        data: valueArray,
         }]
     },
     // Configuration options go here
@@ -57,7 +66,6 @@ $.ajax({
   }
     });
   </script>
-  </section>
 
   <section class="stats">
     <h3>Stats:</h3>
