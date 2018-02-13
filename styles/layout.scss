@@ -15,11 +15,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   vertical-align: baseline;
 }
 
-canvas .myChart {
-  width: 50%;
-  height: 50%;
-}
-
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block;
 }
@@ -2287,7 +2282,7 @@ header h6 + p {
 }
 
 header.major {
-  margin: 0 0 6em 0;
+  margin: 0 0 1.5em 0;
 }
 
 header.major h2 {

@@ -28,18 +28,18 @@ module.exports = (knex) => {
     let templateVars = {
       thispoll: newResults
     };
-    
+
     knex('poll')
       .join('options', 'poll.id', '=', 'options.pollid')
       .where('submissionurl', '=', pollID)
       .select('polldescription', 'title', 'description')
       .then((results) => {
 
-        for (let i = 0; i < results.length; i++) {       
+        for (let i = 0; i < results.length; i++) {
           if (results[i].title !== '') {
             newResults.push(results[i]);
           }
-        }         
+        }
         res.render("poll", templateVars);
       })
   });
@@ -92,7 +92,7 @@ module.exports = (knex) => {
         }
         return Promise.all(
           promises
-        )
+        );
       });
     })
     .then(function () {
@@ -121,10 +121,10 @@ module.exports = (knex) => {
       }
       return Promise.all(
         optionsPromises
-      )
+      );
     });
-    
+
     res.send();
   });
   return router;
-}
+};
