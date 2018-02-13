@@ -56,27 +56,26 @@ app.post("/polls/:id/delete", (req, res) => {
   res.redirect('/');
 });
 
-  app.post('/chart-data', (req, res) => {
-   var id = (req.body.url).substr((req.body.url).length - 6);
-    knex('poll')
-      .join('options', 'poll.id', 'options.pollid')
-      .where('adminurl', id)
-      .join('votes', 'options.id', 'votes.optionid')
-      .select('polldescription', 'title', 'description', 'adminurl', 'optionid', 'points')
+app.post('/chart-data', (req, res) => {
+ var id = (req.body.url).substr((req.body.url).length - 6);
+  knex('poll')
+    .join('options', 'poll.id', 'options.pollid')
+    .where('adminurl', id)
+    .join('votes', 'options.id', 'votes.optionid')
+    .select('polldescription', 'title', 'description', 'adminurl', 'optionid', 'points')
 
-      .then((results) => {
-        //console.log(results);
-        let resultsTotals = {};
-        for (let obj of results) {
-          if (!resultsTotals[obj.title]) {
-          resultsTotals[obj.title] = obj.points;
-          } else {
-            resultsTotals[obj.title] += obj.points;
-          }
+    .then((results) => {
+      let resultsTotals = {};
+      for (let obj of results) {
+        if (!resultsTotals[obj.title]) {
+        resultsTotals[obj.title] = obj.points;
+        } else {
+          resultsTotals[obj.title] += obj.points;
         }
-        //console.log(resultsTotals);
-        let templateVars = {votes: results, votesTotals: resultsTotals};
-    res.json(templateVars);
+      }
+
+    let templateVars = {votes: results, votesTotals: resultsTotals};
+  res.json(templateVars);
   });
     });
 

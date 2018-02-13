@@ -15,7 +15,6 @@ module.exports = (knex) => {
       .select('polldescription', 'title', 'description', 'adminurl', 'optionid', 'points')
 
       .then((results) => {
-        //console.log(results);
         let resultsTotals = {};
         for (let obj of results) {
           if (!resultsTotals[obj.title]) {
@@ -24,7 +23,6 @@ module.exports = (knex) => {
             resultsTotals[obj.title] += obj.points;
           }
         }
-        //console.log(resultsTotals);
         let templateVars = {votes: results, votesTotals: resultsTotals};
         if (!templateVars) {
           res.send({ error: 'this poll has not received any votes yet' });
@@ -35,5 +33,3 @@ module.exports = (knex) => {
 
   return router;
 };
-
-//.sum('points as total').groupBy('title')

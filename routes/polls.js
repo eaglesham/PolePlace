@@ -79,7 +79,6 @@ module.exports = (knex) => {
       .then(function (pollid) {
         let options = Object.values(req.body);
         console.log(req.body);
-        //console.log(options);
         let promises = [];
         for (let i = 1; i < (options.length) - 2; i++) {
           if (i % 2 !== 0) {
@@ -112,7 +111,6 @@ module.exports = (knex) => {
       let i = 0;
       let optionsPromises = [];
       for (let vote in req.body) {
-        //console.log(vote);
         optionsPromises.push(knex('votes').insert({
           optionid: results[i].id,
           points: req.body[vote]
